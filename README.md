@@ -29,7 +29,7 @@ Unofficial app. It has most of the functionality of the original Winamp, but it'
 Currently, you have to build the app yourself. Use the following commands:
 
 ```
-git clone https://github.com/durasj/webamp-desktop.git
+git clone https://github.com/rabinosona/webamp-desktop.git
 cd webamp-desktop
 npm i
 npm run pack:$yourSystem (mac/windows/linux)
@@ -62,7 +62,7 @@ Make sure you have latest [node.js](https://nodejs.org/en/) and [yarn](https://y
 Clone this repository, install dependencies and run the start script:
 
 ```
-git clone https://github.com/durasj/webamp-desktop.git
+git clone https://github.com/rabinosona/webamp-desktop.git
 cd webamp-desktop
 yarn install
 yarn start
