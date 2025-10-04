@@ -16,6 +16,37 @@ contextBridge.exposeInMainWorld("closeElectronWindow", function () {
   ipcRenderer.send("close");
 });
 
+const WINAMP_SELECTORS = [
+  "#main-window",
+  "#equalizer-window",
+  "#playlist-window",
+];
+
+function measureWebampUnion() {
+  const nodes = WINAMP_SELECTORS.map((sel) =>
+    document.querySelector(sel)
+  ).filter(Boolean);
+  if (!nodes.length) return null;
+  let L = Infinity,
+    T = Infinity,
+    R = -Infinity,
+    B = -Infinity;
+  for (const el of nodes) {
+    const r = el.getBoundingClientRect(); // CSS px
+    L = Math.min(L, r.left);
+    T = Math.min(T, r.top);
+    R = Math.max(R, r.right);
+    B = Math.max(B, r.bottom);
+  }
+  return { width: Math.max(0, R - L), height: Math.max(0, B - T) };
+}
+
+function sendResizeToMain() {
+  const size = measureWebampUnion();
+  console.log(size, "yo");
+  if (size) ipcRenderer.send("resize-to-webamp", size); // CSS px; main multiplies by SCALE
+}
+
 contextBridge.exposeInMainWorld("setupRendered", function () {
   const setIgnore = (should) => ipcRenderer.send("ignoreMouseEvents", should);
   const setThumbnailClip = (clip) => ipcRenderer.send("setThumbnailClip", clip);
@@ -25,6 +56,26 @@ contextBridge.exposeInMainWorld("setupRendered", function () {
     ipcRenderer.on("minimized", () => callback());
   const onRestored = (callback) => ipcRenderer.on("restored", () => callback());
   const onClosed = (callback) => ipcRenderer.on("closed", () => callback());
+
+  console.log("trying");
+  // Try a few times on startup (DOM builds asynchronously)
+  let tries = 0;
+  const retryMeasure = () => {
+    console.log("entering resize");
+    sendResizeToMain();
+    if (++tries < 10) setTimeout(retryMeasure, 50);
+  };
+  retryMeasure();
+
+  // Resize again if any Winamp window changes size/position
+  const ro = new ResizeObserver(() => sendResizeToMain());
+  WINAMP_SELECTORS.forEach((sel) => {
+    const el = document.querySelector(sel);
+    if (el) ro.observe(el);
+  });
+
+  // Safety nets
+  window.addEventListener("resize", sendResizeToMain);
 
   // Transparency
   if (process.platform === "win32") {
@@ -307,27 +358,24 @@ function handleTransparencyLinux(
 function handleThumbnail(setThumbnailClip) {
   // Currently only supported on Windows
   // TODO: Add support for other platforms?
-  if (process.platform !== 'win32') return
+  if (process.platform !== "win32") return;
 
-  const mainWebampWindow = document.querySelector('#main-window')
+  const mainWebampWindow = document.querySelector("#main-window");
 
   const setClip = () => {
-    const boundingRect = mainWebampWindow.getBoundingClientRect()
+    const boundingRect = mainWebampWindow.getBoundingClientRect();
 
     setThumbnailClip({
       x: boundingRect.x,
       y: boundingRect.y,
       width: boundingRect.width,
       height: boundingRect.height,
-    })
-  }
+    });
+  };
 
-  const observer = new MutationObserver(debounce(setClip))
-  observer.observe(
-    mainWebampWindow.parentElement,
-    { attributes: true }
-  )
-  setClip()
+  const observer = new MutationObserver(debounce(setClip));
+  observer.observe(mainWebampWindow.parentElement, { attributes: true });
+  setClip();
 }
 
 function debounce(fn, time = 100) {

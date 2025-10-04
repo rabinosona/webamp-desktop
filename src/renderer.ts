@@ -1,84 +1,89 @@
 // Temporary switch to custom webamp build
 // import Webamp from 'webamp'
-import Webamp from './webamp/webamp.bundle.js'
+import Webamp from "./webamp/webamp.bundle.js";
 
-const DEFAULT_DOCUMENT_TITLE = document.title
+const DEFAULT_DOCUMENT_TITLE = document.title;
 
 const webamp = new Webamp({
   initialTracks: [
     {
       metaData: {
-        artist: 'DJ Mike Llama',
-        title: 'Llama Whippin\' Intro',
+        artist: "DJ Mike Llama",
+        title: "Llama Whippin' Intro",
       },
-      url: './mp3/llama-2.91.mp3'
-    }
+      url: "./mp3/llama-2.91.mp3",
+    },
   ],
   initialSkin: {
-    url: './skins/base-2.91.wsz'
+    url: "./skins/base-2.91.wsz",
   },
   availableSkins: [
-    { url: './skins/base-2.91.wsz', name: 'Base v2.91' },
-    { url: './skins/Green-Dimension-V2.wsz', name: 'Green Dimension V2' },
-    { url: './skins/MacOSXAqua1-5.wsz', name: 'Mac OSX v1.5 (Aqua)' },
-    { url: './skins/Skinner_Atlas.wsz', name: 'Skinner Atlas' },
-    { url: './skins/TopazAmp1-2.wsz', name: 'TopazAmp v1.2' },
-    { url: './skins/Vizor1-01.wsz', name: 'Vizor v1.01' },
-    { url: './skins/XMMS-Turquoise.wsz', name: 'XMMS Turquoise' },
-    { url: './skins/ZaxonRemake1-0.wsz', name: 'Zaxon Remake v1.0' },
+    { url: "./skins/base-2.91.wsz", name: "Base v2.91" },
+    { url: "./skins/Green-Dimension-V2.wsz", name: "Green Dimension V2" },
+    { url: "./skins/MacOSXAqua1-5.wsz", name: "Mac OSX v1.5 (Aqua)" },
+    { url: "./skins/Skinner_Atlas.wsz", name: "Skinner Atlas" },
+    { url: "./skins/TopazAmp1-2.wsz", name: "TopazAmp v1.2" },
+    { url: "./skins/Vizor1-01.wsz", name: "Vizor v1.01" },
+    { url: "./skins/XMMS-Turquoise.wsz", name: "XMMS Turquoise" },
+    { url: "./skins/ZaxonRemake1-0.wsz", name: "Zaxon Remake v1.0" },
   ],
   enableHotkeys: true,
-})
+});
 
 const unsubscribeOnMinimize = webamp.onMinimize(() => {
-  window.minimizeElectronWindow()
-})
+  window.minimizeElectronWindow();
+});
 
 const unsubscribeOnClose = webamp.onClose(() => {
-  window.closeElectronWindow()
-  unsubscribeOnMinimize()
-  unsubscribeOnClose()
-})
+  window.closeElectronWindow();
+  unsubscribeOnMinimize();
+  unsubscribeOnClose();
+});
 
-webamp.onTrackDidChange(track => {
+webamp.onTrackDidChange((track) => {
   // window.webampOnTrackDidChange(track)
 
-  if (track && 'metaData' in track && track.metaData.title && track.metaData.artist) {
-    document.title = `${track.metaData.title} - ${track.metaData.artist}`
-  } else if (track && 'defaultName' in track) {
-    document.title = track.defaultName
+  if (
+    track &&
+    "metaData" in track &&
+    track.metaData.title &&
+    track.metaData.artist
+  ) {
+    document.title = `${track.metaData.title} - ${track.metaData.artist}`;
+  } else if (track && "defaultName" in track) {
+    document.title = track.defaultName;
   } else {
-    document.title = DEFAULT_DOCUMENT_TITLE
+    document.title = DEFAULT_DOCUMENT_TITLE;
   }
-})
+});
 
 // Render after the skin has loaded.
-webamp.renderWhenReady(document.getElementById('app')).then(
-  () => window.setupRendered()
-)
+webamp.renderWhenReady(document.getElementById("app")).then(() => {
+  window.setupRendered();
+});
 
 // Expose some webamp API on the window for the main process
 window.webampPlay = function () {
   // @ts-ignore
-  webamp.play()
-}
+  webamp.play();
+};
 
 window.webampPlay = function () {
   // @ts-ignore
-  webamp.play()
-}
+  webamp.play();
+};
 
 window.webampPause = function () {
   // @ts-ignore
-  webamp.pause()
-}
+  webamp.pause();
+};
 
 window.webampNext = function () {
   // @ts-ignore
-  webamp.nextTrack()
-}
+  webamp.nextTrack();
+};
 
 window.webampPrevious = function () {
   // @ts-ignore
-  webamp.previousTrack()
-}
+  webamp.previousTrack();
+};
