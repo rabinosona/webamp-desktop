@@ -7,18 +7,6 @@
   <p>Just like the original — now on your Mac, Windows, or Linux!</p>
 
   <p>
-    <a href="https://desktop.webamp.org" title="Downloads">
-      <img src="https://img.shields.io/github/downloads/durasj/webamp-desktop/total.svg" alt="Downloads badge">
-    </a>
-    <a href="https://travis-ci.org/durasj/webamp-desktop" title="Build">
-      <img src="https://img.shields.io/travis/durasj/webamp-desktop/master.svg" alt="Build badge">
-    </a>
-    <a href="https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fdurasj%2Fwebamp-desktop" title="Tweet">
-      <img src="https://img.shields.io/twitter/url/https/github.com/durasj/webamp-desktop.svg?style=social" alt="Tweet badge">
-    </a>
-  </p>
-
-  <p>
     <a href="https://desktop.webamp.org/">
       <img src="./res/screen-win.gif" alt="Screenshot of Webamp desktop on Windows">
     </a>
@@ -59,7 +47,7 @@ Caused by the disabled hardware acceleration on the Linux. The reason is [issues
 
 ### WIP playlist/EQ resize and hiding
 
-The main point of this repo is to fix the issue with the original implementation, that stretches across entire screen, blocking the UI interactions with the other apps unless switching the tab with Webamp-Desktop.
+The main point of this repo is to fix the issue with the original implementation, that stretches across entire screen, blocking the UI interactions with the other apps unless switching the Webamp Desktop window.
 
 This was remedied by rewriting the window size detection algorithm, but it's not perfect and it doesn't work well with the context menu and resizing the Winamp tabs, namely, the playlist and the equalizer tab.
 
@@ -84,7 +72,7 @@ After the build has completed, you should see one window with the app and one wi
 
 ## Kudos
 
-This project is possible thanks to the [Webamp](https://github.com/captbaritone/webamp) from [@captbaritone](https://github.com/captbaritone) and wonderful open source work of others like [@jberg](https://github.com/jberg) and authors of [many dependencies](https://github.com/durasj/webamp-desktop/blob/master/package.json).
+This project is possible thanks to the [Webamp](https://github.com/captbaritone/webamp) from [@captbaritone](https://github.com/captbaritone) and wonderful open source work of others like [@jberg](https://github.com/jberg) and authors of [many dependencies](https://github.com/durasj/webamp-desktop/blob/master/package.json) and durasj for wrapping the web app in Electron.
 
 Thumbar icons on Windows by [Smashicons](https://smashicons.com).
 
