@@ -1,24 +1,36 @@
-<p>
-  <a href="https://desktop.webamp.org/">
-    <img src="./res/logo.svg" alt="Webamp on desktop logo" width=384 height=128>
-  </a>
+<a href="https://desktop.webamp.org/">
+  <img src="./res/logo.svg" alt="Webamp on desktop logo" width="384" height="128">
+</a>
 
-  <div style="display: flex; justify-content: center;">
-    <h3>Webamp on desktop</h3>
+<div align="center">
+  <h3>Webamp on desktop</h3>
+  <p>Just like the original — now on your Mac, Windows, or Linux!</p>
 
-    <p>
-      Just like the original, now on your Mac, Windows or a Linux!
-    </p>
-
-    <a href="https://desktop.webamp.org" title="Downloads"><img src="https://img.shields.io/github/downloads/durasj/webamp-desktop/total.svg" /></a>
-    <a href="https://travis-ci.org/durasj/webamp-desktop" title="Build"><img src="https://img.shields.io/travis/durasj/webamp-desktop/master.svg" alt="Build badge" /></a>
-    <a href="https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fdurasj%2Fwebamp-desktop" title="Tweet"><img src="https://img.shields.io/twitter/url/https/github.com/durasj/webamp-desktop.svg?style=social" alt="Tweet badge" /></a>
-
-    <div>
-    [![Screenshot of webamp desktop on Windows](./res/screen-win.gif)](https://desktop.webamp.org/) [![Screenshot of Webamp on Linux](./res/screen-linux.png)](https://desktop.webamp.org/) [![Screenshot of Webamp on Mac OS X](./res/screen-mac.png)](https://desktop.webamp.org/)
-    </div>
+  <p>
+    <a href="https://desktop.webamp.org" title="Downloads">
+      <img src="https://img.shields.io/github/downloads/durasj/webamp-desktop/total.svg" alt="Downloads badge">
+    </a>
+    <a href="https://travis-ci.org/durasj/webamp-desktop" title="Build">
+      <img src="https://img.shields.io/travis/durasj/webamp-desktop/master.svg" alt="Build badge">
+    </a>
+    <a href="https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fdurasj%2Fwebamp-desktop" title="Tweet">
+      <img src="https://img.shields.io/twitter/url/https/github.com/durasj/webamp-desktop.svg?style=social" alt="Tweet badge">
+    </a>
   </p>
-</p>
+
+  <p>
+    <a href="https://desktop.webamp.org/">
+      <img src="./res/screen-win.gif" alt="Screenshot of Webamp desktop on Windows">
+    </a>
+    <a href="https://desktop.webamp.org/">
+      <img src="./res/screen-linux.png" alt="Screenshot of Webamp on Linux">
+    </a>
+    <a href="https://desktop.webamp.org/">
+      <img src="./res/screen-mac.png" alt="Screenshot of Webamp on Mac OS X">
+    </a>
+  </p>
+</div>
+
 
 <br>
 
